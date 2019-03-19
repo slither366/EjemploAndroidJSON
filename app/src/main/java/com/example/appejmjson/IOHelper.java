@@ -33,15 +33,24 @@ public class IOHelper {
 
     public static void writeToFile(Context context, String fileName, String str) {
         try {
-            FileOutputStream fos = context.openFileOutput(fileName, Context.MODE_PRIVATE);
+            // ######################## KOTLIN #######################
+            /*FileOutputStream fos = context.openFileOutput(fileName, Context.MODE_PRIVATE);
             fos.write(str.getBytes(), 0, str.length());
-            fos.close();
+            fos.close();*/
+            // #######################################################
+
+            // ######################## JAVA #######################
+            FileOutputStream outputStream;
+            outputStream = context.openFileOutput(fileName, Context.MODE_PRIVATE);
+            outputStream.write(str.getBytes(), 0, str.length());
+            outputStream.close();
+            // #######################################################
         } catch (
                 IOException e) {
             e.printStackTrace();
         }
     }
-    
+
     public static String stringFromAsset(Context context, String assetFileName){
         AssetManager am = context.getAssets();
         
