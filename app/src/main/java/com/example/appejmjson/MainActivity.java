@@ -80,6 +80,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         return Environment.MEDIA_MOUNTED.equals(state);
     }
 
+    public File crearDirectorioPublico(String nombreDirectorio) {
+
+        //Crear directorio público en la carpeta DCIM
+        File directorio = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM), nombreDirectorio);
+
+        //Muestro un mensaje en el logcat si no se creo la carpeta por algun motivo
+        if (!directorio.mkdirs())
+            Log.e("dflores", "Error: No se creo el directorio público");
+
+        return directorio;
+    }
+
     private void iniciarEventoEjemplo() {
 
         this.file_path = (Environment.getExternalStorageDirectory() + this.carpeta);
@@ -309,15 +321,4 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Log.e("leer", contenido);
     }
 
-
-
-    public File crearDirectorioPublico(String nombreDirectorio) {
-        //Crear directorio público en la carpeta Pictures.
-        File directorio = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM), nombreDirectorio);
-        //Muestro un mensaje en el logcat si no se creo la carpeta por algun motivo
-        if (!directorio.mkdirs())
-            Log.e("dflores", "Error: No se creo el directorio público");
-
-        return directorio;
-    }
 }
